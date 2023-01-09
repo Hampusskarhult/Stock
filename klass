@@ -1,0 +1,30 @@
+class Company:
+    def __init__ (self, company_name, data):
+        self.name = company_name
+        self.data = data
+        self.solidity = None
+        self.pe = None 
+        self.ps = None
+
+
+    def update_fundamenta(self, data):
+        self.solidity = data[0]
+        self.pe = data[1]
+        self.ps = data[2]
+
+    def calc_max(self): 
+        return max(self.data.values())
+
+
+    def calc_min(self):
+        return min(self.data.values())
+
+    def stock_return(self):
+        return (list(self.data.values())[-1] / list(self.data.values())[0]) - 1
+
+    def stock_return_percentage(self): 
+        return 100 * self.stock_return()
+
+    def calc_beta(self, omx_return):
+
+        return self.stock_return() / omx_return
